@@ -25,7 +25,7 @@ int quick_select(int A[], int n, int k){
   A[n/2] = A[0];
   A[0] = pivot;
 
-  // A[0], ... , A[j-1] が pivot と等しくなるようにする
+// A[0], ... , A[j-1] が pivot と等しくなるようにする
   for(i = j = 1; i < n; i++){
     if(A[i] == pivot){
       swap(A+i, A+j);
@@ -35,7 +35,7 @@ int quick_select(int A[], int n, int k){
 
   l = j;
 
-  // A[j], ... , A[l-1] が pivot 未満
+// A[j], ... , A[l-1] が pivot 未満
   for(i = j; i < n; i++){
     if(A[i] < pivot){
       swap(A+i, A+l);
