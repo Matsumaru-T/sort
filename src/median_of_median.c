@@ -13,10 +13,42 @@ void swap(int *p, int *q){
   *q = tmp;
 }
 
+// 中央値を求める関数
+int median(int A[], int n){
+  int i, j;
+// 元の配列を壊したくないのでコピーを作る
+  int B[n];
+  for(i = 0; i < n; i++){
+    B[i] = A[i];
+  }
+// ソートをする
+  for(i = 1; i < n; i++){
+    j = i;
+    while((j>0)&&(B[j-1]>B[j])){
+      swap(B+j-1, B+j);
+      j--;
+    }
+  }
+// 中央値を返す
+  return B[n/2];
+}
+
+// pivotを決める関数
+int make_pivot(int A[], int n){
+  int size;
+  int m = (n+4)/5;
+  int B[m];
+  for(int i = 0; i < m; i++){
+    size = n-5*i > 5 ? 5 : n-5*i;
+    B[i] = median(A+5*i, size);
+  }
+  return median(B, m);
+}
+
 int quick_select(int A[], int n, int k){
   int i, j, pivot;
 
-// 真ん中の要素をピボットとする
+// 中央値の中央値をピボットとする
   pivot = A[n/2];
   A[n/2] = A[0];
   A[0] = pivot;
